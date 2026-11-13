@@ -1,6 +1,8 @@
 import 'package:flutter_proyecto_reservar_espacios/domain/models/servicio_extra.dart';
 import 'package:flutter_proyecto_reservar_espacios/domain/models/contacto_local.dart';
 
+enum EtiquetaEspacio { popular, nuevo, terraza, silencioso, basico, vip }
+
 class Espacio {
   const Espacio({
     required this.id,
@@ -19,6 +21,8 @@ class Espacio {
     required this.precioHoraCentimos,
     required this.moneda,
     required this.contacto,
+    required this.destacado,
+    this.etiqueta = EtiquetaEspacio.basico,
   });
 
   final String id;
@@ -37,4 +41,10 @@ class Espacio {
   final int precioHoraCentimos;
   final String moneda;
   final ContactoLocal contacto;
+  final bool destacado;
+  final EtiquetaEspacio? etiqueta;
+
+  bool admiteActividad(String actividad) {
+    return actividades.contains(actividad);
+  }
 }

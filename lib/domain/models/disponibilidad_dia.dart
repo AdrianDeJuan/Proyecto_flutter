@@ -1,5 +1,13 @@
-class DisponibilidadDia {
-  const DisponibilidadDia({required this.id}); //Placeholder para evitar errores
+import 'package:flutter_proyecto_reservar_espacios/domain/models/franja_disponibilidad.dart';
 
-  final String id;
+class DisponibilidadDia {
+  const DisponibilidadDia({
+    required this.espacioId,
+    required this.fecha,
+    required this.franjas,
+  });
+
+  final String espacioId;
+  final DateTime fecha;
+  final List<FranjaDisponibilidad> franjas;
 }

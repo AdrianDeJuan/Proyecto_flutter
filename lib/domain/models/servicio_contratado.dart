@@ -1,7 +1,13 @@
 class ServicioContratado {
   const ServicioContratado({
-    required this.id,
-  }); //Placeholder para evitar errores
+    required this.servicioId,
+    required this.nombre,
+    required this.precioCentimos,
+  });
 
-  final String id;
+  //Sirve para que el importe se mantenga aunque cambie de precio por el objeto
+
+  final String servicioId;
+  final String nombre;
+  final int precioCentimos;
 }

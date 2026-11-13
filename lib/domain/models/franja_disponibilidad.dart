@@ -1,7 +1,11 @@
 class FranjaDisponibilidad {
   const FranjaDisponibilidad({
-    required this.id,
-  }); //Placeholder para evitar errores
+    required this.disponible,
+    required this.fin,
+    required this.inicio,
+  });
 
-  final String id;
+  final DateTime inicio; //DateTime(año, mes, día + desplazamiento)
+  final DateTime fin;
+  final bool disponible;
 }
