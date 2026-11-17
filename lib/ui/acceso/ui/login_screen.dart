@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_reservar_espacios/ui/acceso/ui/registro_screen.dart';
 import 'package:flutter_proyecto_reservar_espacios/ui/espacios/ui/espacios_screen.dart';
+import 'package:flutter_proyecto_reservar_espacios/utils/anadir_placeholder.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -14,33 +15,7 @@ class LoginScreen extends StatelessWidget {
         child: Form(
           child: ListView(
             children: [
-              Center(
-                child: Container(
-                  height: 200,
-                  width: 1000,
-                  //Borde redonde fondo gris
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-
-                  //Column para poder poner verticalmente la imagen y texto del placeholder
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center, //Esto centra el contenido a la altura del contenedor
-                    children: const [
-                      Icon(Icons.image_outlined, size: 50, color: Colors.grey),
-                      SizedBox(height: 8),
-                      Text(
-                        'Placeholder de Imagen',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              AnadirPlaceholder(altura: 150, anchura: 300),
 
               const SizedBox(height: 32),
 
@@ -58,6 +33,8 @@ class LoginScreen extends StatelessWidget {
                             labelText: 'Correo electrónico',
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.email),
+                            filled: true,
+                            fillColor: Colors.white,
                           ),
                           keyboardType: TextInputType.emailAddress,
                         ),
@@ -68,6 +45,8 @@ class LoginScreen extends StatelessWidget {
                             labelText: 'Contraseña',
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.lock),
+                            filled: true,
+                            fillColor: Colors.white,
                           ),
                           obscureText: true,
                         ),
@@ -76,6 +55,7 @@ class LoginScreen extends StatelessWidget {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
+                            backgroundColor: Colors.white,
                           ),
                           onPressed: () {
                             Navigator.of(context).push(
@@ -90,16 +70,26 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 16),
-
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (context) => RegistroScreen(),
+                        Row(
+                          children: [
+                            const Text("¿No tienes cuenta?"),
+                            TextButton(
+                              // style: TextButton.styleFrom(
+                              //   backgroundColor: Colors.white,
+                              // ),
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) => RegistroScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Registrate ->',
+                                // style: TextStyle(color: Colors.blue),
                               ),
-                            );
-                          },
-                          child: const Text('¿No tienes cuenta? Registrate'),
+                            ),
+                          ],
                         ),
                       ],
                     ),

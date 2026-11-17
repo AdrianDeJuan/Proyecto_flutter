@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_proyecto_reservar_espacios/ui/acceso/ui/login_screen.dart';
+import 'package:flutter_proyecto_reservar_espacios/utils/anadir_placeholder.dart';
 
 class RegistroScreen extends StatelessWidget {
   const RegistroScreen({super.key});
@@ -14,33 +15,7 @@ class RegistroScreen extends StatelessWidget {
           //Fuerza todos los campos a estirarse, poner center o algo similar para quitar esa obligacion
           child: ListView(
             children: [
-              Center(
-                //Preferiblemente usar container antes que constrainedbox
-                child: Container(
-                  height: 200,
-                  width: 1000,
-                  //Borde redonde fondo gris
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.image_outlined, size: 50, color: Colors.grey),
-                      SizedBox(height: 8),
-                      Text(
-                        'Placeholder de Imagen',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              AnadirPlaceholder(altura: 150, anchura: 300),
 
               const SizedBox(height: 32),
 
@@ -127,16 +102,26 @@ class RegistroScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
 
-                        TextButton(
-                          onPressed: () {
-                            //Añadir snackbar con context
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (context) => LoginScreen(),
+                        Row(
+                          children: [
+                            const Text("¿Tienes una cuenta creada?"),
+                            TextButton(
+                              // style: TextButton.styleFrom(
+                              //   backgroundColor: Colors.white,
+                              // ),
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) => LoginScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Inicia sesion ->',
+                                // style: TextStyle(color: Colors.blue),
                               ),
-                            );
-                          },
-                          child: const Text('¿Tienes cuenta? Inicia sesion'),
+                            ),
+                          ],
                         ),
                       ],
                     ),

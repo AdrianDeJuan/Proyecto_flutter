@@ -14,7 +14,14 @@ class ReservaApp extends StatelessWidget {
       //const?
       debugShowCheckedModeBanner: false,
       title: 'Reserva de espacios',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xFFF5F7FA),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2563EB)),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF2563EB),
+          foregroundColor: Colors.white,
+        ),
+      ),
       home: LoginScreen(),
     );
   }
