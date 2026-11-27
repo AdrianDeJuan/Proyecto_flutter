@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../app_dependencies.dart';
 import '../../../ui/perfil/ui/perfil_screen.dart';
 import '../../../ui/reservas/ui/mis_reservas_screen.dart';
@@ -25,7 +26,16 @@ class EspaciosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Espacios disponibles'),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset('assets/images/pokeball.png', width: 35, height: 35),
+
+            const SizedBox(width: 10),
+
+            const Text('Explorar Kalos'),
+          ],
+        ),
         actions: [
           IconButton(
             tooltip: 'Mis reservas',
@@ -88,18 +98,19 @@ class EspaciosScreen extends StatelessWidget {
                           final columnas = constraints.maxWidth < 560
                               ? 1
                               : constraints.maxWidth < 900
-                                  ? 2
-                                  : 3;
+                              ? 2
+                              : 3;
 
                           return GridView.builder(
                             padding: const EdgeInsets.all(16),
                             itemCount: espacios.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: columnas,
-                              crossAxisSpacing: 14,
-                              mainAxisSpacing: 14,
-                              mainAxisExtent: 300,
-                            ),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: columnas,
+                                  crossAxisSpacing: 14,
+                                  mainAxisSpacing: 14,
+                                  mainAxisExtent: 360,
+                                ),
                             itemBuilder: (context, index) {
                               final Espacio espacio = espacios[index];
                               return TarjetaEspacio(
@@ -108,20 +119,26 @@ class EspaciosScreen extends StatelessWidget {
                                   // Creamos el ViewModel del detalle para el espacio seleccionado.
                                   final viewModel = DetalleEspacioViewModel(
                                     espacioId: espacio.id,
-                                    espaciosRepository: dependencias.espaciosRepository,
-                                    comentariosRepository: dependencias.comentariosRepository,
-                                    disponibilidadRepository: dependencias.disponibilidadRepository,
-                                    usuarioActual: dependencias.usuariosRepository.obtenerUsuarioDemo(),
+                                    espaciosRepository:
+                                        dependencias.espaciosRepository,
+                                    comentariosRepository:
+                                        dependencias.comentariosRepository,
+                                    disponibilidadRepository:
+                                        dependencias.disponibilidadRepository,
+                                    usuarioActual: dependencias
+                                        .usuariosRepository
+                                        .obtenerUsuarioDemo(),
                                   );
 
                                   // Abrimos el detalle pasando su ViewModel y las dependencias.
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => DetalleEspacioScreen(
-                                        viewModel: viewModel,
-                                        dependencias: dependencias,
-                                      ),
+                                      builder: (context) =>
+                                          DetalleEspacioScreen(
+                                            viewModel: viewModel,
+                                            dependencias: dependencias,
+                                          ),
                                     ),
                                   );
                                 },

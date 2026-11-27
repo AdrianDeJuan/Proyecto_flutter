@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_proyecto_reservar_espacios/app_theme.dart';
+
 import '../../../domain/models/espacio.dart';
 import '../../../utils/formato_utils.dart';
 
 /// Tarjeta reutilizable para representar un espacio en el catálogo o en listas.
 class TarjetaEspacio extends StatelessWidget {
-  const TarjetaEspacio({
-    super.key,
-    required this.espacio,
-    required this.onTap,
-  });
+  const TarjetaEspacio({super.key, required this.espacio, required this.onTap});
 
   final Espacio espacio;
   final VoidCallback onTap;
@@ -67,6 +65,27 @@ class TarjetaEspacio extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 12),
+                  // Actividad principal que admite el espacio.
+                  // Mostramos todas las actividades del espacio.
+                  if (espacio.actividades.isNotEmpty)
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 4,
+                      children: espacio.actividades.map((actividad) {
+                        return Chip(
+                          label: Text(actividad),
+                          backgroundColor: AppTheme.colorFondoTextButton,
+                          labelStyle: const TextStyle(
+                            color: AppTheme.colorAppBar,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          side: BorderSide.none,
+                          visualDensity: VisualDensity.compact,
+                        );
+                      }).toList(),
+                    ),
                   const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
